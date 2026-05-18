@@ -1,11 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Activity, Search, MessageSquare, X, AlertCircle, Globe, Send, Zap, Cpu } from "lucide-react";
 import GaugeComponent from 'react-gauge-component';
 
 export default function Home() {
+    useEffect(() => {
+          fetch('https://threetitan-backend.onrender.com/api/check-ip/8.8.8.8')
+            .then(r => r.json())
+            .then(data => console.log('FETCH_SUCCESS:', data))
+            .catch(err => console.error('FETCH_ERROR:', err));
+    }, []);
+  
   const [lang, setLang] = useState("ar");
   const [ip, setIp] = useState("");
   const [result, setResult] = useState<any>(null);
